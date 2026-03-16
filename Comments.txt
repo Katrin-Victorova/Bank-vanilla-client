@@ -15,10 +15,22 @@ Vite - тут не используем, он быстрее и круче, на
 yarn add -D webpack webpack-cli
 
 yarn add -D html-webpack-plugin mini-css-extract-plugin clean-webpack-plugin css-minimizer-webpack-plugin terser-webpack-plugin dotenv webpack-dev-server html-loader @babel/code @babel/preset-env babel-core babel-loader css-lo
-ader file-loader sass sass-loader style-loader
+ader file-loader sass sass-loader style-loader prettier @trivago/prettier-plugin-sort-imports babel-eslint eslint
 
 Регулярные выражения
 
 webpack - курс потом
 
  yarn dev - запускаем проект
+
+🆕 Новый стандарт Sass
+@import './variables'; // было
+@use './variables'; // нужно
+
+Теперь Sass думает так:
+“Я подключил модуль variables.
+Всё, что внутри него, нужно брать через имя модуля.”
+variables.$font
+variables.$white
+variables.$text-gray
+variables.$primary

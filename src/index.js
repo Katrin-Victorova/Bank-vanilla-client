@@ -1,1 +1,1 @@
-console.log('Katrin here');
+import '@/styles/global.scss'
