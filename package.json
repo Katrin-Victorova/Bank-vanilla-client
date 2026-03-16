@@ -1,0 +1,21 @@
+{
+  "name": "red-bank-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Katrin Victorova",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "dotenv": "^17.3.1",
+    "html-webpack-plugin": "^5.6.6",
+    "mini-css-extract-plugin": "^2.10.1",
+    "terser-webpack-plugin": "^5.4.0",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.0"
+  }
+}
