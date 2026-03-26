@@ -4,7 +4,7 @@ class RenderService {
 	/**
 	 * @param {string} html
 	 * @param {Array} components
-	 * @param {object} [styles]
+	 * @param {Object} [styles]
 	 * @returns {HTMLElement}
 	 */
 	htmlToElement(html, components = [], styles) {
@@ -13,10 +13,15 @@ class RenderService {
 
 		const element = template.content.firstChild
 
+		if (styles) {
+			this.#applyModuleStyles(styles, element)
+		}
+
 		this.#replaceComponentTags(element, components)
 
 		return element
 	}
+
 	/**
 	 * @param {HTMLElement} parentElement
 	 * @param {Array} components
@@ -26,10 +31,9 @@ class RenderService {
 		const allElements = parentElement.getElementsByTagName('*')
 
 		for (const element of allElements) {
-			const elementTagName = element.tagName.toLoverCase()
-
+			const elementTagName = element.tagName.toLowerCase()
 			if (componentTagPattern.test(elementTagName)) {
-				const componentName = element.tagName
+				const componentName = elementTagName
 					.replace(componentTagPattern, '')
 					.replace(/-/g, '')
 
@@ -37,7 +41,7 @@ class RenderService {
 					const instance =
 						Component instanceof ChildComponent ? Component : new Component()
 
-					return instance.constructor.nane.toLoverCase() === componentName
+					return instance.constructor.name.toLowerCase() === componentName
 				})
 
 				if (foundComponent) {
@@ -54,6 +58,40 @@ class RenderService {
 			}
 		}
 	}
+
+	/**
+	 * @param {Object} moduleStyles
+	 * @param {string} element
+	 * @returns {void}
+	 */
+	#applyModuleStyles(moduleStyles, element) {
+		if (!element) return
+
+		const applyStyles = element => {
+			for (const [key, value] of Object.entries(moduleStyles)) {
+				if (element.classList.contains(key)) {
+					element.classList.remove(key)
+					element.classList.add(value)
+				}
+			}
+		}
+
+		if (element.getAttribute('class')) {
+			applyStyles(element)
+		}
+
+		const elements = element.querySelectorAll('*')
+		elements.forEach(applyStyles)
+	}
 }
 
 export default new RenderService()
+
+{
+	/* <div class='home'>
+	<h1 class='text'></h1>
+	<component-heading></component-heading>
+	<component-card-info></component-card-info>
+</div>
+ */
+}
