@@ -34,3 +34,24 @@ variables.$font
 variables.$white
 variables.$text-gray
 variables.$primary
+
+Это JS Doc — специальный формат комментариев для JavaScript
+
+принцип SOLID - ООП
+
+template tag html
+
+jquery - ушла на покой
+мы сделаем свою библиотеку rQuery
+
+home.module.scss
+↓
+webpack css-loader modules
+↓
+JS-объект с классами
+↓
+renderService меняет class="home" на class="home_xxxxx"
+↓
+стили применяются
+
+Если undefined → пробуй: import * as styles

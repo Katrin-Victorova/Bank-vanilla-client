@@ -12,6 +12,10 @@ class RenderService {
 		template.innerHTML = html.trim()
 
 		const element = template.content.firstChild
+		// const element = template.content.firstElementChild
+		console.log('ELEMENT:', element)
+		console.log('ELEMENT CLASS:', element?.className)
+		console.log('STYLES:', styles)
 
 		if (styles) {
 			this.#applyModuleStyles(styles, element)
