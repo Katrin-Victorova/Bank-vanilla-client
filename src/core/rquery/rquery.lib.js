@@ -37,6 +37,51 @@ class RQuery {
 	}
 
 	/**
+	 * Adds a new element as a child to the current element.
+	 * @param {HTMLElement} childElement - The element to be appended.
+	 * @returns {RQuery} The current RQuery instance for chaining.
+	 */
+	append(childElement) {
+		this.element.appendChild(childElement)
+		return this
+	}
+	/**
+	 * Inserts a new element before the currently selected element.
+	 *
+	 * @param {HTMLElement} newElement - Element to insert before the selected one
+	 * @returns {RQuery} Returns the current RQuery instance for chaining
+	 */
+	before(newElement) {
+		if ((!newElement) instanceof HTMLElement) {
+			throw new Error('Element must be an HTMLElement')
+		}
+
+		const parentElement = this.element.parentElement
+
+		if (parentElement) {
+			parentElement.insertBefore(newElement, this.element)
+			return this
+		} else {
+			throw new Error('element does not have a parent element')
+		}
+	}
+
+	/**
+	 * Gets or sets the inner HTML of the selected element.
+	 * @param {string} [htmlContent] - Optional HTML string to set as content
+	 * @returns {RQuery|string} Returns the RQuery instance (for chaining) when setting,
+	 * or the current inner HTML string when getting
+	 */
+	html(htmlContent) {
+		if (typeof htmlContent === 'undefined') {
+			return this.element.innerHTML
+		} else {
+			this.element.innerHTML = htmlContent
+			return this
+		}
+	}
+
+	/**
 	 * Applies a CSS style to the selected element.
 	 * @param {string} property - The CSS property name.
 	 * @param {string} value - The value to assign to the CSS property.

@@ -1,7 +1,7 @@
 import renderService from '@/core/services/render.service'
 import ChildComponent from '@/core/services/render.service'
 
-import styles from './<FTName>.module.scss'
+import * as styles from './<FTName>.module.scss' // * as !!!
 import template from './<FTName>.template.html'
 
 export class <FTName | pascalcase> extends ChildComponent {

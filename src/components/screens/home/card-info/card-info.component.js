@@ -1,7 +1,9 @@
-import renderService from '@/core/services/render.service'
-import ChildComponent from '@/core/services/render.service'
+import {
+	default as ChildComponent,
+	default as renderService
+} from '@/core/services/render.service'
 
-import styles from './card-info.module.scss'
+import * as styles from './card-info.module.scss' // * as !!!
 import template from './card-info.template.html'
 
 export class CardInfo extends ChildComponent {

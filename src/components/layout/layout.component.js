@@ -1,22 +1,28 @@
-export class Layout {
+import renderService from '@/core/services/render.service'
+
+import { Header } from './header/header.component'
+
+import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
+import * as styles from './layout.module.scss' // * as !!!
+import template from './layout.template.html'
+
+export class Layout extends ChildComponent {
 	constructor({ router, children }) {
+		super()
 		this.router = router
 		this.children = children
 	}
 	render() {
-		const headerHTML = `<header>
-		Header
-		<nav>
-		<a href='/'>Home</a>
-		<a href='/auth'>Auth</a>
-		</nav>
-		</header>`
+		this.element = renderService.htmlToElement(template, [], styles)
 
-		return `
-		${headerHTML}
-		<main>		
-		${this.children}
-    </main>
-    `
+		const mainElement = $R(this.element).find('main')
+
+		const contentContainer = $R(this.element).find('#content')
+		contentContainer.append(this.children)
+
+		mainElement.before(new Header().render()).append(contentContainer.element)
+
+		return this.element
 	}
 }
