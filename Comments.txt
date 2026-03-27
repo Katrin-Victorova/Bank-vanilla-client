@@ -55,3 +55,11 @@ renderService меняет class="home" на class="home_xxxxx"
 стили применяются
 
 Если undefined → пробуй: import * as styles
+
+Регульярные выражение:
+ cardNumber.replace(/(\d{4})(?=\d)/g, '$1-')
+Ты собираешь из готовых:
+\d — цифра
+{4} — количество
+() — группа
+?= — проверка впереди
