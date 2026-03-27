@@ -1,5 +1,5 @@
-import ChildComponent from '@core/component/child.component'
-import renderService from '@core/services/render.service'
+import ChildComponent from '@/core/component/child.component'
+import renderService from '@/core/services/render.service'
 
 import { $R } from '@/core/rquery/rquery.lib'
 import * as styles from './heading.module.scss' // * as !!!

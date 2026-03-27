@@ -25,7 +25,8 @@ export default class UserItem extends ChildComponent {
 		if (avatarPath && name) {
 			$R(this.element).find('img').attr('src', avatarPath).attr('alt', name)
 
-			$R(this.element).find('span').text('name')
+			// $R(this.element).find('span').text('name') // не работало
+			$R(this.element).find('span').text(name)
 		}
 	}
 

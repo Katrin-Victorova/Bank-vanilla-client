@@ -33,6 +33,7 @@ class RenderService {
 	#replaceComponentTags(parentElement, components) {
 		const componentTagPattern = /^component-/
 		const allElements = parentElement.getElementsByTagName('*')
+		// const allElements = [...parentElement.querySelectorAll('*')] // new
 
 		for (const element of allElements) {
 			const elementTagName = element.tagName.toLowerCase()

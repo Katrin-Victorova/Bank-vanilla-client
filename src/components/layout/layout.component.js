@@ -10,6 +10,7 @@ import template from './layout.template.html'
 export class Layout extends ChildComponent {
 	constructor({ router, children }) {
 		super()
+
 		this.router = router
 		this.children = children
 	}
@@ -21,7 +22,15 @@ export class Layout extends ChildComponent {
 		const contentContainer = $R(this.element).find('#content')
 		contentContainer.append(this.children)
 
-		mainElement.before(new Header().render()).append(contentContainer.element)
+		mainElement
+			.before(new Header({ router: this.router }).render())
+			.append(contentContainer.element)
+		// const headerElement = new Header({
+		// 	router: this.router
+		// }).render()
+
+		// mainElement.before(headerElement)
+		// mainElement.append(contentContainer.element)
 
 		return this.element
 	}
