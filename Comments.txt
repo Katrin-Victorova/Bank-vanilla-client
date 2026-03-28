@@ -63,3 +63,5 @@ renderService меняет class="home" на class="home_xxxxx"
 {4} — количество
 () — группа
 ?= — проверка впереди
+
+notification.show('success', 'Тестовый текст') - тест
