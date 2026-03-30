@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button/button.component'
 import { Field } from '@/components/ui/field/field.component'
 import { BaseScreen } from '@/core/component/base-screen.component'
 import { $R } from '@/core/rquery/rquery.lib'
+import formService from '@/core/services/form.service'
 import renderService from '@/core/services/render.service'
+import validationService from '@/core/services/validation.service'
 import * as styles from './auth.module.scss' // * as !!!
 import template from './auth.template.html'
 
@@ -15,8 +17,23 @@ export class Auth extends BaseScreen {
 		this.authService = new AuthService()
 	}
 
+	#validateField(formValues) {
+		const emailLabel = $R(this.element).find('label:first-child')
+		const passwordLabel = $R(this.element).find('label:last-child')
+
+		if (!formValues.email) {
+			validationService.showError(emailLabel)
+		}
+		if (!formValues.password) {
+			validationService.showError(passwordLabel)
+		}
+
+		return formValues.email && formValues.password
+	}
+
 	#handleSubmit = event => {
-		console.log(event.target)
+		const formValues = formService.getFormValues(event.target)
+		if (!this.#validateField(formValues)) return
 	}
 
 	#changeFormType(event) {
