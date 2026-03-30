@@ -113,6 +113,24 @@ class RQuery {
 	/* FORM */
 
 	/**
+	 * Устанавливает обработчик события submit для формы.
+	 * @param {function(Event): void} onSubmit — функция-обработчик события отправки формы.
+	 * @returns {RQuery} — текущий экземпляр RQuery (для цепочки вызовов).
+	 */
+	submit(onSubmit) {
+		if (this.element.tagName.toLowerCase() === 'form') {
+			this.element.addEventListener('submit', e => {
+				e.preventDefault()
+				onSubmit(e)
+			})
+		} else {
+			throw new Error('Element must be a form')
+		}
+
+		return this
+	}
+
+	/**
 	 * Set attributes and event listeners for an input element.
 	 * @param {object} options - An object containing input options.
 	 * @param {function(Event): void} [options.onChange] - The event listener for the input's change event.
