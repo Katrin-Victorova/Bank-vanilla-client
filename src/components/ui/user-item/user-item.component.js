@@ -23,9 +23,15 @@ export default class UserItem extends ChildComponent {
 
 	update({ avatarPath, name }) {
 		if (avatarPath && name) {
-			$R(this.element).find('img').attr('src', avatarPath).attr('alt', name)
+			// $R(this.element).find('img').attr('src', avatarPath).attr('alt', name)
+			const name = this.user.name || 'User'
 
-			// $R(this.element).find('span').text('name') // не работало
+			const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+				name
+			)}&background=1e1f23&color=fff`
+
+			$R(this.element).find('img').attr('src', avatarUrl).attr('alt', name)
+
 			$R(this.element).find('span').text(name)
 		}
 	}

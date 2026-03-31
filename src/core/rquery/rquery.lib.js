@@ -38,6 +38,18 @@ class RQuery {
 		}
 	}
 
+	/**
+	 * Найти все элементы, которые соответствуют указанному селектору
+	 * внутри выбранного элемента.
+	 * @param {string} selector — CSS-селектор, по которому выполняется поиск
+	 * внутри выбранного элемента.
+	 * @returns {RQuery[]} Массив новых экземпляров RQuery для найденных элементов.
+	 */
+	findAll(selector) {
+		const elements = this.element.querySelectorAll(selector)
+		return Array.from(elements).map(element => new RQuery(element))
+	}
+
 	/* INSERT */
 
 	/**
