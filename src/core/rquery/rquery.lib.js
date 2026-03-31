@@ -101,6 +101,23 @@ class RQuery {
 	/* EVENTS */
 
 	/**
+	 * Добавляет обработчик события к выбранному элементу для указанного типа события.
+	 * @param {string} eventType - Тип события, на которое нужно подписаться (например: 'click', 'input' и т.д.).
+	 * @param {function(Event): void} callback - Функция, которая будет вызвана при срабатывании события. В неё передается объект события.
+	 * @returns {RQuery} Текущий экземпляр RQuery для цепочки вызовов.
+	 */
+	on(eventType, callback) {
+		if (typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error(
+				'eventType must be a string and callback must be a functuin'
+			)
+		}
+
+		this.element.addEventListener(eventType, callback)
+		return this
+	}
+
+	/**
 	 * Adds a click event listener to the selected element.
 	 * @param {(event: Event) => void} callback - Function to execute on click
 	 * @returns {RQuery} Returns the current RQuery instance for chaining

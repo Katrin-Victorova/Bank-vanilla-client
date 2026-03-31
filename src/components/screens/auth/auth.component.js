@@ -74,7 +74,12 @@ export class Auth extends BaseScreen {
 				}).render()
 			)
 
-		$R(this.element).find('#change-form-type').click(this.#changeFormType)
+		// $R(this.element)
+		// .find('#change-form-type')
+		// .click(this.#changeFormType)
+		$R(this.element)
+			.find('#change-form-type')
+			.click(event => this.#changeFormType(event))
 
 		$R(this.element).find('form').submit(this.#handleSubmit)
 		// this.element.addEventListener('submit', this.#handleSubmit)
