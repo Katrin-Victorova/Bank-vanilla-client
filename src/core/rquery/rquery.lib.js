@@ -193,6 +193,24 @@ class RQuery {
 	/* STYLES */
 
 	/**
+	 * Показывает выбранный элемент, удаляя свойство стиля 'display'.
+	 * @returns {RQuery} Текущий экземпляр RQuery для цепочки вызовов.
+	 */
+	show() {
+		this.element.style.removeProperty('display')
+		return this
+	}
+
+	/**
+	 * Скрывает выбранный элемент, устанавливая свойство display в 'none'.
+	 * @returns {RQuery} Текущий экземпляр RQuery для цепочки вызовов.
+	 */
+	hide() {
+		this.element.style.display = 'none'
+		return this
+	}
+
+	/**
 	 * Applies a CSS style to the selected element.
 	 * @param {string} property - The CSS property name.
 	 * @param {string} value - The value to assign to the CSS property.

@@ -29,7 +29,7 @@ export async function redQuery({
 		data = null
 	const url = `${SERVER_URL}/api${path}`
 
-	const accessToken = new StorageService().getUtem(ACCESS_TOKEN_KEY)
+	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
 	const requestOptions = {
 		method,
@@ -59,7 +59,10 @@ export async function redQuery({
 			const errorData = await response.json()
 			const errorMessage = extractErrorMessage(errorData)
 
-			if (errorMessage) {
+			// if (errorMessage) {
+			// 	onError(errorMessage)
+			// }
+			if (errorMessage && typeof onError === 'function') {
 				onError(errorMessage)
 			}
 
@@ -68,7 +71,10 @@ export async function redQuery({
 	} catch (errorData) {
 		const errorMessage = extractErrorMessage(errorData)
 
-		if (errorMessage) {
+		// if (errorMessage) {
+		// 	onError(errorMessage)
+		// }
+		if (errorMessage && typeof onError === 'function') {
 			onError(errorMessage)
 		}
 	} finally {
