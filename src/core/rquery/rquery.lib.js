@@ -220,8 +220,8 @@ class RQuery {
 		const limit = 16
 
 		if (
-			this.element.tagName.toLowerCase() === 'input' ||
-			this.element.type === 'text'
+			this.element.tagName.toLowerCase() !== 'input' ||
+			this.element.type !== 'text'
 		)
 			throw new Error('Element must be an input with type "text"')
 		this.element.addEventListener('input', event => {

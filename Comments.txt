@@ -85,3 +85,9 @@ Proxy — это объект-обёртка, который позволяет 
 
 с проксти
 obj.name → сначала ловушка → потом значение
+
+xss атака - межсайтовый скриптинг
+Чаще всего ошибка встречаеться в innerHTML и вот как можно безопасно обойти
+		const parser = new DOMParser()
+		const doc = parser.parseFromString(html, 'text/html')
+		const element = doc.body.firstChild

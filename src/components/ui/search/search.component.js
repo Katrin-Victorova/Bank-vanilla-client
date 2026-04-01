@@ -2,8 +2,10 @@ import ChildComponent from '@/core/component/child.component'
 import renderService from '@/core/services/render.service'
 
 import { UserService } from '@/api/user.service'
+import { TRANSFER_FIELD_SELECTOR } from '@/components/screens/home/contacts/transfer-field/transfer-field.component'
 import { $R } from '@/core/rquery/rquery.lib'
 import { debounce } from '@/utils/debounce.util'
+import { formatCardNumberWithDashes } from '@/utils/format/format-card-nimber'
 import UserItem from '../user-item/user-item.component'
 import * as styles from './search.module.scss' // * as !!!
 import template from './search.template.html'
@@ -28,6 +30,10 @@ export default class Search extends ChildComponent {
 
 			users.forEach((user, index) => {
 				const userItem = new UserItem(user, true, () => {
+					$R(TRANSFER_FIELD_SELECTOR).value(
+						formatCardNumberWithDashes(user.card.number)
+					)
+
 					searchResultElement.html('')
 				}).render()
 

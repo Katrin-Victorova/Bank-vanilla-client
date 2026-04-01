@@ -6,11 +6,11 @@
 	display: flex;
 	align-items: stretch;
 
-	> .link {
+	> .line {
 		background-color: rgba($text-gray, 20%);
 		width: 1px;
 		padding: 0;
-		margin: 0 20px;
+		margin: 0 10px;
 	}
 	&:hover {
 		> div.card-number > .card-icon > svg {
@@ -30,7 +30,7 @@
 
 		&.card-number {
 			display: flex;
-			white-space: nowrap;
+			// white-space: nowrap;
 			align-items: center;
 
 			> .card-icon {
@@ -59,7 +59,7 @@
 
 			&:first-child:not(& + div > span) {
 				color: $text-gray;
-				white-space: nowrap;
+				// white-space: nowrap;
 				text-transform: uppercase;
 				margin-bottom: 3px;
 			}
@@ -67,7 +67,7 @@
 			&:last-child,
 			& + div > span {
 				font-weight: 500;
-				font-size: 20px;
+				font-size: 16px;
 				color: $white;
 			}
 		}

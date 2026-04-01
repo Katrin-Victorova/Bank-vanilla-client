@@ -1,8 +1,5 @@
-import ChildComponent from '@core/component/child.component'
-import renderService from '@core/services/render.service'
-
-import { $R } from '@/core/rquery/rquery.lib'
-import * as styles from './loader.module.scss' // * as !!!
+import ChildComponent from '@/core/component/child.component'
+import renderService from '@/core/services/render.service'
 import template from './loader.template.html'
 
 export const LOADER_SELECTOR = '[data-component="loader"]'
@@ -15,12 +12,12 @@ export default class Loader extends ChildComponent {
 	}
 
 	render() {
-		this.element = renderService.htmlToElement(template, [], styles)
+		this.element = renderService.htmlToElement(template, [])
 
-		$R(this.element)
-			.css('wight', `${this.width}px`)
-			.css('height', `${this.height}px`)
-			.addClass('bounce')
+		this.element.style.width = `${this.width}px`
+		this.element.style.height = `${this.height}px`
+
+		this.element.classList.add('bounce')
 
 		return this.element
 	}

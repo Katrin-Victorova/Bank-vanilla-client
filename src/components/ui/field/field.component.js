@@ -23,9 +23,9 @@ export class Field extends ChildComponent {
 		const inputElement = this.element.querySelector('input')
 
 		inputElement.placeholder = this.placeholder
-		inputElement.type = this.type
 		inputElement.value = this.value
 		inputElement.name = this.name
+		inputElement.type = this.type
 
 		if (this.type === 'number') {
 			$R(inputElement).numberInput()
