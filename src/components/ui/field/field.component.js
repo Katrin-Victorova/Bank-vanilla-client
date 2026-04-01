@@ -1,4 +1,5 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 import * as styles from './field.module.scss' // * as !!!
 import template from './field.template.html'
@@ -18,14 +19,6 @@ export class Field extends ChildComponent {
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 
-		// $R → обёртка → .input() → магия (которая не сработала)
-		// const inputElement = $R(this.element).find('input').input({
-		// 	placeholder: this.placeholder,
-		// 	type: this.type,
-		// 	value: this.value,
-		// 	name: this.name
-		// })
-
 		// querySelector → реальный input → прямое присваивание
 		const inputElement = this.element.querySelector('input')
 
@@ -35,13 +28,13 @@ export class Field extends ChildComponent {
 		inputElement.name = this.name
 
 		if (this.type === 'number') {
-			inputElement.numberInput()
+			$R(inputElement).numberInput()
 		}
 
 		const isCreditCard = this.variant === 'credit-card'
 
 		if (isCreditCard) {
-			inputElement.creditCardInput()
+			$R(inputElement).creditCardInput()
 		}
 
 		return this.element

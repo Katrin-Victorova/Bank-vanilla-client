@@ -142,6 +142,20 @@ class RQuery {
 	/* FORM */
 
 	/**
+	 * Получает или устанавливает значение input-элемента.
+	 * @param {string} [newValue] — новое значение для input. Если не передано, возвращается текущее значение
+	 * @return {string|RQuery} — если передано newValue, возвращает экземпляр RQuery, иначе текущее значение input
+	 */
+	value(newValue) {
+		if (typeof newValue === 'undefined') {
+			return this.element.value
+		} else {
+			this.element.value = newValue
+			return this
+		}
+	}
+
+	/**
 	 * Устанавливает обработчик события submit для формы.
 	 * @param {function(Event): void} onSubmit — функция-обработчик события отправки формы.
 	 * @returns {RQuery} — текущий экземпляр RQuery (для цепочки вызовов).
@@ -185,8 +199,8 @@ class RQuery {
 	 */
 	numberInput(limit) {
 		if (
-			this.element.tagName.toLowerCase() === 'input' ||
-			this.element.type === 'number'
+			this.element.tagName.toLowerCase() !== 'input' ||
+			this.element.type !== 'number'
 		)
 			throw new Error('Element must be an input with type "number"')
 		this.element.addEventListener('input', event => {
@@ -305,6 +319,19 @@ class RQuery {
 			this.element.setAttribute(attributeName, value)
 			return this
 		}
+	}
+	/**
+	 * Удаляет атрибут у текущего элемента.
+	 * @param {string} attrName — имя атрибута, который нужно удалить
+	 * @return {RQuery} — возвращает экземпляр RQuery
+	 */
+	removeAttr(attrName) {
+		if (typeof attrName !== 'string') {
+			throw new Error('attrName must be a string')
+		}
+
+		this.element.removeAttribute(attrName)
+		return this
 	}
 }
 
