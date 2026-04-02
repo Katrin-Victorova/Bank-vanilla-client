@@ -1,4 +1,5 @@
 import { CardService } from '@/api/card.service'
+import Loader from '@/components/ui/loader/loader.component'
 import { BALANCE_UPDATED } from '@/constrants/event.constants'
 import ChildComponent from '@/core/component/child.component'
 import { $R } from '@/core/rquery/rquery.lib'
@@ -92,7 +93,10 @@ export class CardInfo extends ChildComponent {
 	}
 
 	render() {
-		if (this.store.state.user) this.fetchData()
+		if (this.store.state.user) {
+			$R(this.element).html(new Loader().render().outerHTML)
+			setTimeout(() => this.fetchData(), 500)
+		}
 
 		return this.element
 	}

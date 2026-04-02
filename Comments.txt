@@ -91,3 +91,6 @@ xss атака - межсайтовый скриптинг
 		const parser = new DOMParser()
 		const doc = parser.parseFromString(html, 'text/html')
 		const element = doc.body.firstChild
+
+// Будьте аккуратные с outerHTML иначе он может не пробросить listener click, input и тд
+$R(this.element).html(new AuthRequiredMessage().render().outerHTML)

@@ -61,8 +61,7 @@ export default class Contacts extends ChildComponent {
 			$R(this.element)
 				.find('#contacts-list')
 				.html(new Loader().render().outerHTML)
-
-			this.fetchData()
+			setTimeout(() => this.fetchData(), 500)
 		}
 
 		return this.element

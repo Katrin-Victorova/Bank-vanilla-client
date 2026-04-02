@@ -72,7 +72,7 @@ export default class Transactions extends ChildComponent {
 	render() {
 		if (this.store.user) {
 			$R(this.element).append(new Loader().render())
-			this.fetchData()
+			setTimeout(() => this.fetchData(), 500)
 		}
 
 		return this.element
