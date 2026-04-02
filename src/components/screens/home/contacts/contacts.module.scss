@@ -5,8 +5,8 @@
 	@include dashboard-section('small');
 
 	> div:last-child {
-		.button {
-			margin-bottom: 1rem;
+		> button {
+			margin-bottom: 8px;
 			width: 100%;
 
 			&:last-child {
