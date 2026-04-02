@@ -10,6 +10,7 @@ import { TRANSACTION_COMPLETED } from '@/constrants/event.constants'
 import { $R } from '@/core/rquery/rquery.lib'
 import Store from '@/core/store/store'
 import { formatToCurrency } from '@/utils/format/format-to-currency'
+import CircleChart from './circle-chart/circle-chart.component'
 import StatisticsItem from './statistics-item/statistics-item.component'
 import * as styles from './statistics.module.scss' // * as !!!
 import template from './statistics.template.html'
@@ -50,6 +51,24 @@ export default class Statistics extends ChildComponent {
 		this.#removeListeners()
 	}
 
+	renderChrart(income, expense) {
+		const total = income + expense
+		let incomePercent = (income * 100) / total
+		let expensePercent = 100 - incomePercent
+
+		if (income && !expense) {
+			incomePercent = 100
+			expensePercent = 0.1
+		}
+
+		if (!income && expense) {
+			incomePercent = 0.1
+			expensePercent = 100
+		}
+
+		return new CircleChart(incomePercent, expensePercent).render()
+	}
+
 	fetchData() {
 		this.statisticService.main(data => {
 			if (!data) return
@@ -59,6 +78,9 @@ export default class Statistics extends ChildComponent {
 
 			const statisticsItemsElement = $R(this.element).find('#statistics-item')
 			statisticsItemsElement.text('')
+
+			const circleChartElement = $R(this.element).find('#circle-chart')
+			circleChartElement.text('')
 
 			statisticsItemsElement
 				.append(
@@ -75,6 +97,8 @@ export default class Statistics extends ChildComponent {
 						'purple'
 					).render()
 				)
+
+			circleChartElement.append(this.renderChrart(data[0].value, data[1].value))
 		})
 	}
 
